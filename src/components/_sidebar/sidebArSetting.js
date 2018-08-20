@@ -1,15 +1,15 @@
 import React from "react";
-import { AppRegistry, Image, StatusBar, TouchableOpacity } from "react-native";
+import { AppRegistry, Image, TouchableOpacity } from "react-native";
 import { Container, Content, Text, List, ListItem, Button, Left, Right, Body, Icon } from "native-base";
 
-export default class SideBar extends React.Component {
+export default class SidebAr extends React.Component {
   render() {
   	const { navigate } = this.props.navigation;
     return (
       <Container>
         <Content>
           <Image
-            source={require('../assets/images/sidebarr.jpg')}
+            source={require('../../assets/images/sidebarr.jpg')}
             style={{
               height: 120,
               alignSelf: "stretch",
@@ -38,6 +38,16 @@ export default class SideBar extends React.Component {
               <Body>
                 <TouchableOpacity onPress={() => navigate("Setting")}>
                   <Text>Setting Server</Text>
+                </TouchableOpacity>
+              </Body>
+            </ListItem>
+            <ListItem avatar>
+              <Left>
+                <Icon name="ios-arrow-dropleft-outline" />
+              </Left>
+              <Body>
+                <TouchableOpacity onPress={() => navigate("Setting")}>
+                  <Text>Log Out</Text>
                 </TouchableOpacity>
               </Body>
             </ListItem>

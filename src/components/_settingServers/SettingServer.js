@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native'
 import { Container, Header, Content, Form, Item, Input, Label, Left, Body, Right, Button, Text, Icon, Title } from 'native-base';
+import OfflineNotice from '../_notifications/OfflineNotice'
 
 export default class SettingServer extends Component {
   render() {
@@ -24,6 +25,7 @@ export default class SettingServer extends Component {
           <Right />
         </Header>
         <Content style={{backgroundColor: '#efe'}} >
+        <OfflineNotice />
           <Form>
             <Item floatingLabel>
               <Label style={{fontFamily: 'roboto'}}>Setting Server</Label>

@@ -1,7 +1,7 @@
 var sendNotification = function(data) {
   var headers = {
     "Content-Type": "application/json; charset=utf-8",
-    "Authorization": "Basic NGEwMGZmMjItY2NkNy0xMWUzLTk5ZDUtMDAwYzI5NDBlNjJj"
+    "Authorization": "Basic OTQ4ZGUwYTktYjFmNS00MjUwLWJjNDgtMGRmMDE0NWVkMDRi"
   };
   
   var options = {
@@ -30,9 +30,13 @@ var sendNotification = function(data) {
 };
 
 var message = { 
-  app_id: "",
+  app_id: "fd977379-09d6-4638-af0b-1db4ce5ee459",
   contents: {"en": "English Message"},
-  included_segments: ["All"]
+  // content_available=true,
+  data :{"abc": "123", "foo": "bar"},
+  url : "http://www.google.com",
+  // included_segments: ["All"]
+  include_player_ids : ["972d8605-5b35-4905-bd95-3fcbf2e1dfb3"],
 };
 
 sendNotification(message);

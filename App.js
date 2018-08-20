@@ -11,15 +11,15 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
-import RNOneSignal from './src/components/oneSignalPush'
-import Test from './src/components/Test'
-import DashBoArdList from './src/dashboard/dAhboArdList'
-import HomeScreenRouter from './src/dashboard/'
-import OfflineNotice from './src/dashboard/OfflineNotice'
+import Test from './src/components/__TESTING__/Test'
+// import HomeScreenRouter from './src/dashboard/'
+// import OfflineNotice from './src/dashboard/OfflineNotice'
+import HomeScreenRouter from './src/components/_dashboards/'
+
 export default class App extends Component<Props> {
   render() {
     return (
-      <DashBoArdList />
+      <HomeScreenRouter />
     );
   }
 }

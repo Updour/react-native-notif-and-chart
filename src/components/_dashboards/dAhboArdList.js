@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-    FlatList, ActivityIndicator, View, StatusBar, NetInfo
+    FlatList, ActivityIndicator, View, StatusBar
 } from 'react-native'
 import {
   Container,
@@ -17,46 +17,65 @@ import {
   Icon
 } from "native-base";
 import { Col, Row, Grid } from "react-native-easy-grid";
+import OneSignal from 'react-native-onesignal';
+
 import styles from "./styles";
-import OfflineNotice from './OfflineNotice'
+import OfflineNotice from '../_notifications/OfflineNotice'
+
 export default class DashBoArdList extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
     
-        this.state = {
-          lasthistory : [],
-          header:{
-            "pairs":'',
-            "left" :'',
-            "right":''
-          },
-          loading : true,
-      }
-        NetInfo.getConnectionInfo().then((connectionInfo) => {
-          console.warn('Initial, type: ' + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType);
-        });
-        function handleFirstConnectivityChange(connectionInfo) {
-          console.warn('First change, type: ' + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType);
-          NetInfo.removeEventListener(
-            'connectionChange',
-            handleFirstConnectivityChange
-            );
-        }
-        NetInfo.addEventListener(
-          'connectionChange',
-          handleFirstConnectivityChange
-          );
+    this.state = {
+      lasthistory : [],
+      header:{
+        "pairs":'',
+        "left" :'',
+        "right":''
+      },
+      loading : true,
+
     }
-    
-    componentDidMount () {
-      this._interval = setInterval(() => {
-        this._onFetChingdAtas()
+  }
+
+  componentDidMount () {
+      // for oneSignal
+      OneSignal.init("fd977379-09d6-4638-af0b-1db4ce5ee459");
+      OneSignal.addEventListener('received', this.onReceived);
+      OneSignal.addEventListener('opened', this.onOpened);
+      OneSignal.addEventListener('ids', this.onIds.bind(this));
+
+      OneSignal.configure();
+        //for auto refresh
+        this._interval = setInterval(() => {
+          this._onFetChingdAtas()
                // console.warn( this.state.people)
-        }, 5000);
-    }
-    componentWillUnmount () {
+             }, 5000);
+      }
+      componentWillUnmount () {
+      //for oneSignal 
+      OneSignal.removeEventListener('received', this.onReceived);
+      OneSignal.removeEventListener('opened', this.onOpened);
+      OneSignal.removeEventListener('ids', this.onIds.bind(this));
+      //for auto refresh
       clearInterval(this._interval);
     }
+      //for oneSignal
+      onReceived(notification) {
+        console.log("Notification received: ", notification);
+      }
+
+      onOpened(openResult) {
+        console.log('Message: ', openResult.notification.payload.body);
+        console.log('Data: ', openResult.notification.payload.additionalData);
+        console.log('isActive: ', openResult.notification.isAppInFocus);
+        console.log('openResult: ', openResult);
+      }
+
+      onIds(device) {
+        console.log('Device info: ', device);
+      }
+
       //get dAtas
       _onFetChingdAtas = () => {
         fetch('http://otoritech.com/data')
@@ -75,7 +94,7 @@ export default class DashBoArdList extends Component {
             errorMessage : e
           })
                   // console.warn(e)
-        })
+                })
       }
 
     //for list 
@@ -113,7 +132,7 @@ export default class DashBoArdList extends Component {
     if (this.state.loading) {
       return(
         <View style={{flex: 1, padding: 20, flexDirection: 'row', padding: 10, justifyContent: 'space-around' }}>
-          <ActivityIndicator size="small" color="blue"/>
+          <ActivityIndicator size="small" color="#bfbfbf"/>
         </View>
       )
     }
@@ -136,8 +155,9 @@ export default class DashBoArdList extends Component {
           </Body>
           <Right />
         </Header>
-        <OfflineNotice />
+        
         <Content style={{backgroundColor: '#efefef'}}>
+        <OfflineNotice />
           <Content>
           <Grid style={styles.gridHeader}>
             <Col>
@@ -187,7 +207,6 @@ export default class DashBoArdList extends Component {
               renderItem={this._renderItem}
             /> 
           </Card>
-            
         </Content>
       </Container>
     );

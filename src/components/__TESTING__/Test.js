@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
 	View, 
-	Text, NetInfo
+	Text
 } from 'react-native';
 import OneSignal from 'react-native-onesignal';
 
@@ -11,13 +11,6 @@ export default class Test extends Component {
 	  super(props);
 	
 	  this.state = {};
-        NetInfo.isConnectionExpensive()
-        .then(isConnectionExpensive => {
-          console.log('Connection is ' + (isConnectionExpensive ? 'Expensive' : 'Not Expensive'));
-      })
-        .catch(error => {
-          console.error(error);
-      });
 	}
 
 	componentDidMount() {
@@ -36,18 +29,18 @@ export default class Test extends Component {
     }
 
     onReceived(notification) {
-        console.log("Notification received: ", notification);
+        console.warn("Notification received: ", notification);
     }
 
     onOpened(openResult) {
-        console.log('Message: ', openResult.notification.payload.body);
-        console.log('Data: ', openResult.notification.payload.additionalData);
+        console.warn('Message: ', openResult.notification.payload.body);
+        console.warn('Data: ', openResult.notification.payload.additionalData);
         console.log('isActive: ', openResult.notification.isAppInFocus);
         console.log('openResult: ', openResult);
     }
 
     onIds(device) {
-        console.warn('Device info: ', device);
+        console.log('Device info: ', device);
     }
 
     render() {

@@ -41,14 +41,14 @@ class OfflineNotice extends PureComponent {
 
 const styles = StyleSheet.create({
   offlineContainer: {
-    backgroundColor: '#b52424',
+    backgroundColor: 'red',
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    width,
-    position: 'absolute',
-    top: 30
+    width
+    // position: 'absolute',
+    // top: 30
   },
   offlineText: { color: '#fff' }
 });
