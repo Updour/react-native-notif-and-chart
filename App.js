@@ -15,8 +15,11 @@ import Test from './src/components/__TESTING__/Test'
 // import HomeScreenRouter from './src/dashboard/'
 // import OfflineNotice from './src/dashboard/OfflineNotice'
 import HomeScreenRouter from './src/components/_dashboards/'
-
-export default class App extends Component<Props> {
+import AppNotif from './src/components/__TESTING__/viewApp'
+import Charti from './src/components/__TESTING__/__chart'
+import Chart from './src/components/_chart/chart'
+import _ChartLine from './src/components/__TESTING__/_ChartLine'
+export default class App extends Component {
   render() {
     return (
       <HomeScreenRouter />

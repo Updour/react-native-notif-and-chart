@@ -23,7 +23,7 @@ export default class SidebAr extends React.Component {
             </ListItem>
             <ListItem avatar>
               <Left>
-               <Icon name="home" type="FontAwesome" />
+               <Icon name="ios-home-outline" />
               </Left>
               <Body>
                 <TouchableOpacity onPress={() => navigate("Home")}>
@@ -33,7 +33,7 @@ export default class SidebAr extends React.Component {
             </ListItem>
             <ListItem avatar>
               <Left>
-                <Icon name="settings" />
+                <Icon name="ios-settings-outline" />
               </Left>
               <Body>
                 <TouchableOpacity onPress={() => navigate("Setting")}>
@@ -41,12 +41,22 @@ export default class SidebAr extends React.Component {
                 </TouchableOpacity>
               </Body>
             </ListItem>
+              <ListItem avatar>
+                <Left>
+                  <Icon name="ios-stats-outline"/>
+                </Left>
+                <Body>
+                  <TouchableOpacity onPress= {() => navigate("Chart")}>
+                    <Text>Process</Text>
+                  </TouchableOpacity>
+                </Body>
+              </ListItem>
             <ListItem avatar>
               <Left>
-                <Icon name="ios-arrow-dropleft-outline" />
+                <Icon name="ios-log-out-outline" />
               </Left>
               <Body>
-                <TouchableOpacity onPress={() => navigate("Setting")}>
+                <TouchableOpacity onPress={() => navigate("Login")}>
                   <Text>Log Out</Text>
                 </TouchableOpacity>
               </Body>
