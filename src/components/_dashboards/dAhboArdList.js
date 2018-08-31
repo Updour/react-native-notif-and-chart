@@ -40,7 +40,7 @@ export default class DashBoArdList extends Component {
 
   componentDidMount () {
       // for oneSignal
-      OneSignal.init("fd977379-09d6-4638-af0b-1db4ce5ee459");
+      OneSignal.init("apikey");
       OneSignal.addEventListener('received', this.onReceived);
       OneSignal.addEventListener('opened', this.onOpened);
       OneSignal.addEventListener('ids', this.onIds.bind(this));
@@ -78,7 +78,7 @@ export default class DashBoArdList extends Component {
 
       //get dAtas
       _onFetChingdAtas = () => {
-        fetch('http://otoritech.com/data')
+        fetch('api')
         .then(response => response.json())
         .then(responseJson => {
           this.setState({
